@@ -4,8 +4,12 @@
 <ul>
     {% for post in object_list %}
     <li>
-        <a href="{% url 'post-detail' post.pk %}">{{post.title}}</a> | {{post.author}} - <small><a
-                href="{% url 'update-post' post.pk %}" class="">(Edit)</a></small><br>
+        <a href="{% url 'post-detail' post.pk %}">{{post.title}}</a> | {{post.author}}
+        {% if request.user.is_authenticated %}
+        - <small><a href="{% url 'update-post' post.pk %}" class="">(Edit)</a></small> | <small><a
+                href="{% url 'delete-post' post.pk %}" class="">(Delete)</a></small>
+        {% endif %}
+        <br>
         {{post.body}}
     </li>
     {% endfor %}

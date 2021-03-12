@@ -3,11 +3,15 @@
 {% block content %}
 
 <h1>{{post.title}}</h1>
-<small>By : {{post.author.first_name}} {{post.author.last_name}}</small>
+<small>By : {{post.author.first_name}} {{post.author.last_name}}</small><br>
+<small>Published: {{post.post_date}}</small>
 <br>
-<hr><br>
+<hr>
 {{post.body}}
 <br> <br>
+{% if request.user.is_authenticated %}
 <a href="{% url 'update-post' post.pk %}" class="btn btn-secondary">Edit</a>
-<a href="{% url 'home' %}"><button class="btn btn-secondary">Back</button></a>
+<a href="{% url 'delete-post' post.pk %}" class="btn btn-secondary">Delete</a>
+{% endif %}
+<a href="{% url 'home' %}"><button class="btn btn-secondary">⬅ Back</button></a>
 {% endblock %}

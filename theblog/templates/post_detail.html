@@ -8,5 +8,6 @@
 <hr><br>
 {{post.body}}
 <br> <br>
+<a href="{% url 'update-post' post.pk %}" class="btn btn-secondary">Edit</a>
 <a href="{% url 'home' %}"><button class="btn btn-secondary">Back</button></a>
 {% endblock %}
